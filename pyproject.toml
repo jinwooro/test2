@@ -1,39 +1,22 @@
 [project]
 name = "robosuite-runtime"
 version = "0.1.0"
+description = "Generic Robosuite simulation runtime"
 requires-python = ">=3.12,<3.13"
+
 dependencies = [
-    "torch==2.9.1",
-    "numpy==1.26.4",
+    "numpy>=1.26,<2",
+
     "mujoco==3.4.0",
     "robosuite==1.5.2",
-    "gymnasium==1.2.3",
-    "stable-baselines3==2.7.1",
-    "sb3-contrib==2.7.1",
-    "rl-zoo3==2.7.0",
-    "imageio==2.37.2",
-    "imageio-ffmpeg",
-    "pygame==2.6.1",
+
     "glfw==2.10.0",
     "PyOpenGL==3.1.10",
-    "opencv-python-headless==4.11.0.86",
-    "cloudpickle==3.1.2",
-    "shimmy==2.0.0",
+
+    "imageio",
+    "imageio-ffmpeg",
+
+    "cloudpickle",
+
+    "PyYAML",
 ]
-
-[project.scripts]
-run-bundle = "robosuite_runtime.cli:main"
-
-[tool.uv.sources]
-torch = [
-    { index = "pytorch-cpu" }
-]
-
-[[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
-explicit = true
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
