@@ -1,2 +1,2 @@
-# test2
-# test2
+docker run runtime \
+    --bundle my_bundle.zip
