@@ -9,21 +9,22 @@ ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential gcc g++ cmake git ffmpeg patchelf swig unzip \
+    build-essential gcc g++ cmake git ffmpeg patchelf unzip \
     libgl1 libgl1-mesa-dev libgl1-mesa-dri libglu1-mesa \
     libglew-dev libglfw3 libglfw3-dev \
     libx11-6 libx11-dev libxext6 libxrender1 libxi6 libxrandr2 \
     libxcursor1 libxinerama1 libxxf86vm1 libsm6 libice6 \
     libxkbcommon0 libxkbcommon-x11-0 \
-    libsdl2-2.0-0 libsdl2-dev \
-    libsdl2-image-2.0-0 libsdl2-mixer-2.0-0 libsdl2-ttf-2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 COPY pyproject.toml ./
+
+RUN uv sync --no-dev
+
 COPY src ./src
 
-RUN uv sync
+RUN uv sync --no-dev
 
 CMD ["run-bundle"]
